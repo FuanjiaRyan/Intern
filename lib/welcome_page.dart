@@ -1,8 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:third_app/search_page.dart';
 
-class WelcomePage extends StatelessWidget {
+import 'auth_service.dart';
+import 'login_screen.dart';
+
+class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
+
+  @override
+  State<WelcomePage> createState() => _WelcomePageState();
+}
+
+class _WelcomePageState extends State<WelcomePage> {
+  final AuthService authService = AuthService();
+
+  Future<void> _logout(BuildContext context) async {
+    await AuthService().signOut();
+
+    if (context.mounted) {
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => const LoginPage()),
+            (route) => false,
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +41,10 @@ class WelcomePage extends StatelessWidget {
               child: Row(
                 children: [
                   Icon(Icons.search),
+                  SizedBox(width: 20),
+                  InkWell(onTap: () {
+                    _logout(context);
+                  }, child: Icon(Icons.logout)),
                   SizedBox(width: 20),
                   CircleAvatar(
                     backgroundImage: AssetImage("assets/BioKit.jpg"),
