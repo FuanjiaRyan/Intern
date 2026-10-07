@@ -1,5 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:third_app/welcome_page.dart';
+
+import 'auth_service.dart';
+import 'login_screen.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({super.key});
@@ -10,6 +14,7 @@ class SignupPage extends StatefulWidget {
 
 class _SignupPageState extends State<SignupPage> {
   final _formKey = GlobalKey<FormState>();
+  final AuthService authService = AuthService();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -65,6 +70,7 @@ class _SignupPageState extends State<SignupPage> {
               //Password
               TextFormField(
                 controller: _passwordController,
+                obscureText: true,
                 decoration: InputDecoration(
                   hintText: "Enter Password",
                   labelText: "Password",
@@ -83,6 +89,7 @@ class _SignupPageState extends State<SignupPage> {
               //Confirm Password
               TextFormField(
                 controller: _confirmPwController,
+                obscureText: true,
                 decoration: InputDecoration(
                   hintText: "Confirm password",
                   labelText: "password",
@@ -92,19 +99,53 @@ class _SignupPageState extends State<SignupPage> {
                   if (value == null || value.isEmpty) {
                     return "Enter password";
                   }
-                  if ( value != _passwordController.text) {
+                  if (value != _passwordController.text) {
                     return "Passwords do not match";
                   }
                 },
               ),
               SizedBox(height: 10),
+
+              //Login screen button
+              TextButton(
+                onPressed: () async{
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginPage()),
+                  );
+                },
+                child: Text("Already have an account? Login"),
+              ),
+
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async{
                   if (_formKey.currentState!.validate()) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => WelcomePage()),
-                    );
+
+                    try {
+                      final user = await authService.signUp(
+                        email: _emailController.text.trim(),
+                        password: _passwordController.text.trim(),
+                        username: _nameController.text.trim(),
+                      );
+
+                      if (user != null && context.mounted) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const WelcomePage()
+                          ),
+                        );
+                      }
+                    } on FirebaseAuthException catch (e) {
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text("Sign Up Failed: ${e.message}"),
+                          ),
+                        );
+                      }
+                    }
+
                   }
                 },
                 child: Text("Submit"),

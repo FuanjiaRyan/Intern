@@ -1,9 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:third_app/signup_page.dart';
 import 'package:third_app/welcome_page.dart';
 
 import 'firebase_options.dart';
+import 'login_screen.dart';
 
 void main() async{
 
@@ -41,7 +43,9 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: SignupPage(),
+      home: FirebaseAuth.instance.currentUser != null
+        ? const WelcomePage()
+          : const LoginPage(),
     );
   }
 }
