@@ -47,29 +47,31 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBTus1S9ghn4A06IAsXUgZkqVzlF6P-CeU',
-    appId: '1:134493834023:web:dadd205b998e826f45f702',
-    messagingSenderId: '134493834023',
-    projectId: 'love-88094',
-    authDomain: 'love-88094.firebaseapp.com',
-    storageBucket: 'love-88094.firebasestorage.app',
-    measurementId: 'G-H1F04PPR9C',
+    apiKey: 'AIzaSyClAc-FvSjH2_SGiPkdOGflzrmMFWpZNIA',
+    appId: '1:965485780400:web:a2aa936ce93ce2484d8a75',
+    messagingSenderId: '965485780400',
+    projectId: 'fir-app-7818b',
+    authDomain: 'fir-app-7818b.firebaseapp.com',
+    storageBucket: 'fir-app-7818b.firebasestorage.app',
+    measurementId: 'G-L8LY1D45N7',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCOH1hoSbqdrnwwWC0BD_vJUm6ABAzfSak',
-    appId: '1:134493834023:android:6be4e2faa702964a45f702',
-    messagingSenderId: '134493834023',
-    projectId: 'love-88094',
-    storageBucket: 'love-88094.firebasestorage.app',
+    apiKey: 'AIzaSyCAiV3ESVXRR2d00XDfbUxosigat5N7ePQ',
+    appId: '1:965485780400:android:ca64bfb102edf2914d8a75',
+    messagingSenderId: '965485780400',
+    projectId: 'fir-app-7818b',
+    storageBucket: 'fir-app-7818b.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDApIPvBZcKPORUoed22TXX6e9ZLusnoOs',
-    appId: '1:134493834023:ios:a4dcb003f0b457b545f702',
-    messagingSenderId: '134493834023',
-    projectId: 'love-88094',
-    storageBucket: 'love-88094.firebasestorage.app',
+    apiKey: 'AIzaSyA_6borISEupaim87znf_vxB4tDlir4DNI',
+    appId: '1:965485780400:ios:14679fef7152db654d8a75',
+    messagingSenderId: '965485780400',
+    projectId: 'fir-app-7818b',
+    storageBucket: 'fir-app-7818b.firebasestorage.app',
+    androidClientId: '965485780400-ehbkn6veocic8oqdu8b2qoeg9338gscp.apps.googleusercontent.com',
+    iosClientId: '965485780400-tlt7qorq8u6qv64j4a0ti341eqkt7b4j.apps.googleusercontent.com',
     iosBundleId: 'com.example.thirdApp',
   );
 }
