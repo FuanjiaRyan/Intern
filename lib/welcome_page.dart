@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:third_app/chat_page.dart';
 import 'package:third_app/search_page.dart';
 
 import 'auth_service.dart';
@@ -73,6 +74,7 @@ class _WelcomePageState extends State<WelcomePage> {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           FloatingActionButton(
+            heroTag: 'search',
             onPressed: () {
               Navigator.push(
                 context,
@@ -83,9 +85,10 @@ class _WelcomePageState extends State<WelcomePage> {
           ),
           SizedBox(height: 10),
           FloatingActionButton.extended(
+            heroTag: 'text',
             icon: Icon(Icons.chat),
             onPressed: () {
-
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ChatPage()));
             },
             label: Text("Start chat"),
           ),
